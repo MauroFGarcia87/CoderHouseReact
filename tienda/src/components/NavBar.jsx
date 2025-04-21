@@ -25,8 +25,8 @@ const NavBar = () => {
           {/* Menú centrado */}
           <Nav className="mx-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#historia">Historia</Nav.Link>
-            <Nav.Link href="#contacto">Contacto</Nav.Link>
+            <Nav.Link href="#historia">Cañas</Nav.Link>
+            <Nav.Link href="#contacto">Reeles</Nav.Link>
           </Nav>
 
           {/* Carrito de compras alineado a la derecha */}

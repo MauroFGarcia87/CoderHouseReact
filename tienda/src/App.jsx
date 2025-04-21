@@ -16,7 +16,7 @@ function App() {
               <NavBar/>              
           </header>
           <main>
-              <ItemListContainer mensaje="Bienvenida al tienda de Fly Fisging"/>
+              <ItemListContainer mensaje="Bienvenida al tienda de Fly Fishing"/>
           </main>
           <footer>
             
