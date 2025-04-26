@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from "../assets/logoLimayMedio.webp"; // Asegúrate de colocar tu logo en la carpeta correcta
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -24,9 +25,15 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           {/* Menú centrado */}
           <Nav className="mx-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#historia">Cañas</Nav.Link>
-            <Nav.Link href="#contacto">Reeles</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/products/cañas">
+              Cañas
+            </Nav.Link>
+            <Nav.Link as={Link} to="/products/reel">
+              Reeles
+            </Nav.Link>
           </Nav>
 
           {/* Carrito de compras alineado a la derecha */}
@@ -40,4 +47,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

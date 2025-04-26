@@ -5,6 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import ItemDetailCotainer from './pages/ItemDetailCotainer';
+
+
 
 
 function App() {
@@ -13,10 +19,17 @@ function App() {
   return (
     <>       
           <header>
-              <NavBar/>              
+              <NavBar/>  
+              <Routes>
+              <Route path="/" element={<ItemListContainer />} />              
+              <Route path="/products/:category" element={<ItemListContainer />} />
+              <Route path="/item/:id" element={<ItemDetailCotainer />} />
+              <Route path="*" element={<h1>Page not Found - Error 404</h1>} /> 
+              </Routes>            
           </header>
           <main>
-              <ItemListContainer mensaje="Bienvenida al tienda de Fly Fishing"/>
+            
+              
           </main>
           <footer>
             
