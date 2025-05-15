@@ -9,6 +9,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import ItemDetailCotainer from './pages/ItemDetailCotainer';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+
+
 
 
 
@@ -24,6 +28,9 @@ function App() {
               <Route path="/" element={<ItemListContainer />} />              
               <Route path="/products/:category" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailCotainer />} />
+              <Route path='/checkout' element ={<Checkout /> }></Route>
+              <Route path='/cart' element={<Cart/>}/>
+              <Route path='/contacto' element={<Contact/>}/>
               <Route path="*" element={<h1>Page not Found - Error 404</h1>} /> 
               </Routes>            
           </header>

@@ -34,6 +34,9 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/products/reel">
               Reeles
             </Nav.Link>
+            <Nav.Link as={Link} to="contacto">
+              Contacto
+            </Nav.Link>
           </Nav>
 
           {/* Carrito de compras alineado a la derecha */}

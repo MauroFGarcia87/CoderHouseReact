@@ -1,49 +1,35 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import {fetchData} from "../services/fetchData";
-import FetchExample from "./FetchExample";
+import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router';
+import { useGlobalState } from "../context/Context";
+import { getCategory, getProducts } from "../services/firebaseServices";
 import ItemList from "./ItemList";
-import { useParams } from 'react-router'
 
-const ItemListContainer = ({ mensaje }) => {
+const ItemListContainer = () => {
+  const { loading, setLoading } = useGlobalState();
   const [list, setList] = useState([]);
   const { category } = useParams();
 
   useEffect(() => {
-    fetchData() // Esta función debería devolver tu array de productos con la propiedad "categoria"
-      .then(data => {
-        if (category) {
-          const filteredItems = data.filter(item => item.categoria.toLowerCase() === category.toLowerCase());
-          setList(filteredItems);
-        } else {
-          setList(data); // Si no hay categoría, muestra todos los productos
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        // Aquí podrías mostrar un mensaje de error al usuario
-      });
-  }, [category]); // El efecto se re-ejecuta cuando cambia la categoría
+    setLoading(true);
+    const fetchLista = () => (category ? getCategory(category) : getProducts());
 
-  const mapList = list.map((item) => {
-    return (
-      <div>
-        <h3>name: {item.name}</h3>
-      </div>
-    );
-  });
+    fetchLista().then((res) => {
+      setList(res);
+      setLoading(false);
+    }).catch((err) => {
+      console.error("Error al cargar productos:", err);
+      setLoading(false);
+    });
+  }, [category, setLoading]);
 
   return (
     <div>
       <section className="container text-center mt-5">
-        <h1>{mensaje}</h1>
-        <ItemList list={list} /> 
-        
+        {loading ? "Cargando..." : <ItemList list={list} />}
       </section>
-      
     </div>
   );
 };
 
 export default ItemListContainer;
+
