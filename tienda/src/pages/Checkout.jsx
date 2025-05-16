@@ -9,13 +9,19 @@ const Checkout = () => {
 
     const {calcularTotal, cart} = useGlobalState();
    
-
+    console.log(calcularTotal);
   const [user, setUser] = useState({
-    name: "Mauro",
-    email: "mauro@gmail.com",
-    telefono: "222233354"
+    name: "",
+    email: "",
+    telefono: ""
     
   });
+  console.log(user)
+  function handleChange(e){
+    
+    setUser({...user,[e.target.name]: e.target.value});
+    console.log(e.target.value)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,28 +54,20 @@ const Checkout = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formNombre">
           <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" name="nombre" placeholder="Ingrese su nombre" />
+          <Form.Control type="text" name="name" onChange={handleChange} placeholder="Ingrese su nombre" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Ingrese su email" />
+          <Form.Control type="text" name="email" onChange={handleChange} placeholder="Ingrese su email" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formTelefono">
           <Form.Label>Teléfono</Form.Label>
-          <Form.Control type="text" name="telefono" placeholder="Ingrese su teléfono" />
+          <Form.Control type="text" name="telefono" onChange={handleChange} placeholder="Ingrese su teléfono" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formDomicilio">
-          <Form.Label>Domicilio</Form.Label>
-          <Form.Control type="text" name="domicilio" placeholder="Ingrese su domicilio" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formFechaNacimiento">
-          <Form.Label>Fecha de nacimiento</Form.Label>
-          <Form.Control type="date" name="fechaNacimiento" />
-        </Form.Group>
+        
 
         <Button variant="primary" type="submit">
           Enviar
