@@ -1,14 +1,22 @@
 import React from 'react'
+import {Card, CardBody, CardSubtitle, CardTitle } from 'react-bootstrap'
 import { Link } from 'react-router'
+
 
 const Item = ({item}) => {
   return (
-    <div >
-        <div >
-          <h3>{item.name}</h3>
-          <h4>Precio {item.price}</h4>
+    <div className='col-md-4 mb-4'>
+      <Card>
+        <CardBody>
+          <CardTitle>{item.name}</CardTitle>
+          <CardSubtitle>{item.price}</CardSubtitle>
+        
           <Link to={'/item/'+item.id }>Ver Detalle</Link>
-        </div>
+        </CardBody>
+      </Card>
+        
+          
+        
     </div>
   )
 }
