@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 //Servicio para obtener la lista de productos
@@ -41,4 +41,16 @@ export const createOrder = async (newOrder) => {
 
 }
 
-//Servicio para obtener la orden creada
+// Servicio para restar stock
+
+export const updateStock = async (id) =>{
+    try {
+
+        const proDoc = doc(db, "Productos", id, cantidad)
+        const result = await updateDoc(proDoc, {stock: proDoc.cantidad - cantidad});
+        return result
+    } catch (error) {
+        console.log(error);
+    }
+}
+
