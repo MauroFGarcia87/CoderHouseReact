@@ -4,10 +4,12 @@ import { createOrder } from "../services/firebaseServices";
 import { useGlobalState } from "../context/Context";
 import Swal from 'sweetalert2';
 import { Form, Button, Container } from 'react-bootstrap'
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
 
-    const {calcularTotal, cart} = useGlobalState();
+    const {calcularTotal, cart, vaciarCarrito, calcularItems} = useGlobalState();
+    const navigate = useNavigate(); // Hook para redirección
    
     console.log(calcularTotal);
   const [user, setUser] = useState({
@@ -43,6 +45,11 @@ const Checkout = () => {
           title: "Compra finalizada!",
           text: `Tu orden de compra es: ${res.id}`,
           icon: "success"
+        }).then(() =>{
+            vaciarCarrito;
+            calcularItems;
+            console.log(calcularItems);
+            navigate("/"); 
         });
     }).catch((err) => {
         console.log(err)

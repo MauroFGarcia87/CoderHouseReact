@@ -41,11 +41,15 @@ const ContextProvider = ({children}) =>{
       const calcularTotal = cart.reduce((total, prod) => {
         return total + (prod.quantity * prod.price)
       }, 0);
+
+      const vaciarCarrito = () => {
+        setCart([]);
+      };
       
        
       
 
-    return <GlobalStates.Provider value={{cart, setCart, list, setList, loading, setLoading, calcularTotal, calcularItems}}>{children}</GlobalStates.Provider>
+    return <GlobalStates.Provider value={{cart, setCart, list, setList, loading, setLoading, calcularTotal, calcularItems, vaciarCarrito}}>{children}</GlobalStates.Provider>
 
 }
 
