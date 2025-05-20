@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { Form, Button, Container } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
 
-const Checkout = () => {
+const Checkout = ({setCounter}) => {
 
     const {calcularTotal, cart, vaciarCarrito, calcularItems} = useGlobalState();
     const navigate = useNavigate(); // Hook para redirección
@@ -46,6 +46,7 @@ const Checkout = () => {
           text: `Tu orden de compra es: ${res.id}`,
           icon: "success"
         }).then(() =>{
+            setCounter(0);
             vaciarCarrito;
             calcularItems;
             console.log(calcularItems);

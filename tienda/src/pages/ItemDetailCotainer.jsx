@@ -2,6 +2,7 @@ import React from "react";
 
 import { useEffect } from "react";
 import { useState } from "react";
+import { Card, CardBody, CardText, CardTitle } from "react-bootstrap";
 import { useParams } from "react-router";
 import Counters from "../components/Counters";
 import { useGlobalState } from "../context/Context";
@@ -17,8 +18,7 @@ const ItemDetailCotainer = () => {
 
   useEffect(() => {
     setLoading(true);
-    getProducById(params.id).then((res) => {     
-      
+    getProducById(params.id).then((res) => {
       setDetail(res);
       setLoading(false);
     });
@@ -29,22 +29,27 @@ const ItemDetailCotainer = () => {
   };
 
   return (
-    <div>
+    <div className="container justify-content-center">
       {loading ? (
         "Cargando lista"
       ) : (
         <>
-          <h2>Nombre {detail.name}</h2>
-          <p>Descripcion {detail.description}</p>
-          <h3>{detail.cantidad}</h3>
-          <Counters
-            cantidad={detail.cantidad}
-            counter={counter}
-            setCounter={setCounter}
-          />
-          <button onClick={addCart} disabled={counter == 0}>
-            Agregar al carrito 🛒
-          </button>
+          <Card  className="d-flex flex-column align-items-center justify-content-center text-center">
+            <CardBody>
+              <CardTitle>Nombre {detail.name}</CardTitle>
+              <CardText> Descripcion {detail.description}</CardText>
+            </CardBody>
+            <h4> Stock {detail.cantidad}</h4>
+            <Counters
+              cantidad={detail.cantidad}
+              counter={counter}
+              setCounter={setCounter}
+            />
+            <button className="mt-5" onClick={addCart} disabled={counter == 0}>
+              Agregar al carrito 🛒
+            </button>
+          </Card>
+          
         </>
       )}
     </div>

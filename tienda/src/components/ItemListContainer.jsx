@@ -25,7 +25,7 @@ const ItemListContainer = () => {
   return (
     <div>
       <section className="container text-center mt-5">
-        {loading ? "Cargando..." : <ItemList list={list} />}
+        {loading ? <span class="loader"></span> : <ItemList list={list} />}
       </section>
     </div>
   );
